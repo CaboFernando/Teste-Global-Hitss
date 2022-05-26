@@ -47,9 +47,9 @@
             @Html.DisplayFor(modelItem => item.Idade)
         </td>
         <td>
-            @Html.ActionLink("Visualizar", "Details", new { id=item.Codigo }) |
-            @Html.ActionLink("Editar", "Edit", new { id = item.Codigo }) |
-            @Html.ActionLink("Remover", "Delete", new { id = item.Codigo })
+            @Html.ActionLink("Visualizar", "Details", new { codigo = item.Codigo }) |
+            @Html.ActionLink("Editar", "Edit", new { codigo = item.Codigo }) |
+            @Html.ActionLink("Remover", "Delete", new { codigo = item.Codigo }, new { onclick = "return confirm('Deseja realmente remover esse motorista?');" })
         </td>
     </tr>
 }

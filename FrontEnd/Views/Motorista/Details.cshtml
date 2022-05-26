@@ -1,0 +1,57 @@
+﻿@model FrontEnd.Models.MotoristaViewModel
+
+@{
+    ViewBag.Title = "Detalhes do Motorista";
+}
+
+<h2>Detalhes do Motorista</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            CÓDIGO
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Codigo)
+        </dd>
+
+        <dt>
+            CPF
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cpf)
+        </dd>
+
+        <dt>
+            NOME
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            SEXO
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sexo)
+        </dd>
+
+        <dt>
+            IDADE
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Idade)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { codigo = Model.Codigo }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>
