@@ -1,0 +1,57 @@
+﻿@model IEnumerable<FrontEnd.Models.MotoristaViewModel>
+
+@{
+    ViewBag.Title = "Lista de Motoristas";
+}
+
+<h2>Lista de Motoristas</h2>
+
+<p>
+    @Html.ActionLink("Novo", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            CÓDIGO
+        </th>
+        <th>
+            CPF
+        </th>
+        <th>
+            NOME
+        </th>
+        <th>
+            SEXO
+        </th>
+        <th>
+            IDADE
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cpf)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nome)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Sexo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Idade)
+        </td>
+        <td>
+            @Html.ActionLink("Visualizar", "Details", new { id=item.Codigo }) |
+            @Html.ActionLink("Editar", "Edit", new { id = item.Codigo }) |
+            @Html.ActionLink("Remover", "Delete", new { id = item.Codigo })
+        </td>
+    </tr>
+}
+
+</table>

@@ -10,7 +10,8 @@ namespace WebApi.Dao
 {
     public class DaoMotorista
     {
-        string conexao = "Data Source=HMDB0007;Initial Catalog=dbTest;User ID=test.femsa;Password=p@$$w0rd";
+        //string conexao = "Data Source=HMDB0007;Initial Catalog=dbTest;User ID=test.femsa;Password=p@$$w0rd";
+        string conexao = "Data Source=DESKTOP-JDK2GPD;Initial Catalog=dbTest;User ID=sa;Password=1234";
 
         public List<Motorista> GetMotoristas()
         {
