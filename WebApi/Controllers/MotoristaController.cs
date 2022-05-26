@@ -5,46 +5,102 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using WebApi.Model;
+using WebApi.Repositorio;
 
 namespace WebApi.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class MotoristaController : ControllerBase
     {
+        private readonly MotoristaRepositorio _motoristaRepositorio;
+
+        public MotoristaController()
+        {
+            _motoristaRepositorio = new MotoristaRepositorio();
+        }
+
         // GET api/motorista
         [HttpGet]
         public ActionResult<IEnumerable<Motorista>> Get()
         {
-            return new Motorista[] { new Motorista() };
+            try
+            {
+                var lista = _motoristaRepositorio.GetMotoristas();
+
+                if (lista.Count == 0)
+                    return NotFound("Lista de motoristas vazia");
+
+                return lista;
+            }
+            catch (Exception)
+            {
+                return BadRequest("Erro ao consultar a lista de Motoristas");
+            }
         }
 
         // GET api/motorista/1
-        [HttpGet("{id}")]
-        public ActionResult<Motorista> Get(int id)
+        [HttpGet("{codigo}")]
+        public ActionResult<Motorista> Get(int codigo)
         {
-            return new Motorista();
+            try
+            {
+                Motorista motorista = _motoristaRepositorio.GetMotorista(codigo);
+
+                if(motorista.Nome == null)
+                    return NotFound("Motorista não encontrado");
+
+                return motorista;
+            }
+            catch (Exception)
+            {
+                return BadRequest("Erro ao consultar o Motorista");
+            }
         }
 
         // POST api/motorista
         [HttpPost]
-        public void Post([FromBody] Motorista motorista)
+        public ActionResult Post([FromBody] Motorista motorista)
         {
-            
+            try
+            {
+                _motoristaRepositorio.PostMotorista(motorista);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Erro ao cadastrar o motorista.");
+            }
+            return Ok("Motorista cadastrado com sucesso!");
         }
 
         // PUT api/motorista
-        [HttpPut("{id}")]
-        public void Post(int id, [FromBody] Motorista motorista)
+        [HttpPut]
+        public ActionResult Put([FromBody] Motorista motorista)
         {
-
+            try
+            {
+                _motoristaRepositorio.PutMotorista(motorista);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Erro ao atualizar o motorista.");
+            }
+            return Ok("Motorista atualizado com sucesso!");
         }
 
         // DELETE api/motorista/1
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete]
+        public ActionResult Delete(int codigo)
         {
-
+            try
+            {
+                _motoristaRepositorio.DeleteMotorista(codigo);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Erro ao excluir o motorista.");
+            }
+            return Ok("Motorista excluído com sucesso!");
         }
     }
 }

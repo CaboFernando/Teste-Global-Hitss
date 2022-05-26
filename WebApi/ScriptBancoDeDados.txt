@@ -1,0 +1,66 @@
+﻿--Create database dbTest
+--go
+
+--use dbTest
+
+--create table Motorista
+--(
+--	Codigo int not null identity (1,1),
+--    Cpf varchar(14) not null,
+--    Nome varchar(200) not null,
+--    Sexo varchar(9) not null,
+--    Idade int not null,
+--    Ativo bit default 1
+--)
+
+--Insert into Motorista (Cpf, Nome) values ('434.928.588-13','Carlos Fernando dos Santos')
+
+--create procedure GetMotoristas
+--as
+--	set nocount on
+--	select	m.Codigo,
+--			m.Cpf, 
+--			m.Nome, 
+--			m.Sexo, 
+--			m.Idade, 
+--			m.Ativo 
+--	from Motorista m
+--  where Ativo = 1
+--go
+
+--create procedure GetMotorista(@CODIGO int)
+--as
+--	set nocount on
+--	select	m.Codigo,
+--			m.Cpf, 
+--			m.Nome, 
+--			m.Sexo, 
+--			m.Idade, 
+--			m.Ativo 
+--	from Motorista m
+--	where Codigo = @CODIGO and Ativo = 1
+--go
+
+--create procedure PostMotorista(@CPF varchar(14), @NOME varchar(200), @SEXO varchar (9), @IDADE int)
+--as
+--	set nocount on
+--	Insert into Motorista (Cpf, Nome, Sexo, Idade) 
+--	values (@CPF, @NOME, @SEXO, @IDADE)
+
+--go
+
+--create procedure PutMotorista(@CODIGO int, @CPF varchar(14), @NOME varchar(200), @SEXO varchar (9), @IDADE int)
+--as
+--	set nocount on
+--	UPDATE Motorista
+--	SET Cpf = @CPF ,Nome = @NOME ,Sexo = @SEXO ,Idade = @IDADE
+--	WHERE Codigo = @CODIGO
+--go
+
+--create procedure DeleteMotorista(@CODIGO int)
+--as
+--  set nocount on
+--	UPDATE Motorista
+--	SET Ativo = 0
+--	WHERE Codigo = @CODIGO
+--go
